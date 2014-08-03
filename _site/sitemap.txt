@@ -1,0 +1,10 @@
+
+/archive.html
+/atom.xml
+/categories.html
+/feed/index.html
+/index.html
+/new-page.html
+/pages.html
+/sitemap.txt
+/tags.html

@@ -1,22 +1,14 @@
----
-layout: default
-title: 首页
----
-{% include JB/setup %}
-
 <article>
-{% for post in site.posts limit:5 %}
-  {% assign page = post %}
   <section class="post type-post status-publish format-standard hentry">
     <div class="title">
-      <h2><a href="{{ page.url }}">{{ page.title }}</a></h2>
+      <h2>{{ page.title }}</h2>
       <small>
         <date class="date-pub" title="{{ page.date | date_to_xmlschema }}" datetime="{{ page.date | date_to_xmlschema }}" pubdate>
           <span class="month">{{ page.date | date: '%B' }}</span>
           <span class="day">{{ page.date | date: '%d' }}</span>
           <span class="year">{{ page.date | date: '%Y' }}</span>
         </date>, 
-                {% assign categories_list = page.categories %}
+				{% assign categories_list = page.categories %}
         {% if categories_list.first[0] == null %}
           {% for category in categories_list %} 
             <a href="{{ BASE_PATH }}{{ site.JB.categories_path }}#{{ category }}-ref" rel="category tag">{{ category | join: "/" }}</a>
@@ -29,7 +21,7 @@ title: 首页
       </small>
     </div>
     <div class="entry">
-      {{ page.content }}
+      {{ content }}
     </div>
     <div class="post-meta">
       标签：
@@ -37,9 +29,17 @@ title: 首页
       {% include JB/tags_list %}
       <div class="clear"></div>
     </div>
+    <nav class="post-nav">
+      {% if page.previous %}
+      <span class="previous"><a href="{{ page.previous.url }}" rel="prev" title="{{ page.previous.title }}">{{ page.previous.title }}</a></span>
+      {% endif %}
+      {% if page.next %}
+      <span class="next"><a href="{{ page.next.url }}" rel="next" title="{{ page.next.title }}">{{ page.next.title }}</a></span>
+      {% endif %}
+      <div class="clear"></div>
+    </nav>
   </section>
-{% endfor %}
-<nav class="navigation">
-  <a href="{{ site.JB.archive_path }}">More...</a>
-</nav>
+  <div class="comment">
+  {% include JB/comments %}
+  </div>
 </article>
