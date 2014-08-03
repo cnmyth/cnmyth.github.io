@@ -1,3 +1,4 @@
+msg=`date`
 git add .
-git commit -m " `date` "
+git commit -m "$msg"
 git push
